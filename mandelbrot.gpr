@@ -1,0 +1,29 @@
+project Mandelbrot is
+   
+   for Main use ("main.adb");
+   for Object_Dir use "build";
+   for Source_Dirs use (".");
+   for Languages use ("Ada");
+   
+   package Ide is
+      for Default_Switches ("adacontrol") use ("-f", "dtn.aru");
+   end Ide;
+
+   package Compiler is
+      for Default_Switches ("Ada")
+        use ("-fstack-check", --  Generate stack checking code (part of Ada)
+             "-gnata",        --  Enable assertions            (part of Ada)
+             "-gnato",        --  Overflow checking            (part of Ada)
+             "-gnatf",                     --  Full, verbose error messages
+             "-gnatwa",                    --  All optional warnings
+             "-gnatVa",                    --  All validity checks
+             "-gnaty3abcdefhiklnoOprstux", --  Style checks
+             "-gnatyM140",                 --  Style check
+             -- "-gnatwe",                    --  Treat warnings as errors
+             "-gnat2012",                  --  Use Ada 2012
+             "-Wall",                      --  All GCC warnings
+             "-O2",                        --  Optimise (level 2/3)
+             "-g", "-E");
+    end Compiler;
+
+end Mandelbrot;
